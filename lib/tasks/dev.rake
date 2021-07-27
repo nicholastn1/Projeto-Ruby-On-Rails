@@ -5,10 +5,11 @@ namespace :dev do
   desc "Configura o ambiente de desenvolvimento"
   task setup: :environment do
     if Rails.env.development?
-      show_spinner("Apagando database") {%x(rails db:drop:_unsafe)}
-      show_spinner("Criando database") {%x(rails db:create)}
-      show_spinner("Migrando database") {%x(rails db:migrate)}
+      show_spinner("Apagando DataBase") {%x(rails db:drop:_unsafe)}
+      show_spinner("Criando DataBase") {%x(rails db:create)}
+      show_spinner("Migrando DataBase") {%x(rails db:migrate)}
       show_spinner("Criando o Administrador padrão...") {%x(rails dev:add_default_admin)}
+      show_spinner("Criando Administradores extra...") {%x(rails dev:add_extra_admins)}
       show_spinner("Criando o Usuário padrão...") {%x(rails dev:add_default_user)}
 
     else
@@ -23,6 +24,17 @@ namespace :dev do
       password: DEFAULT_PASSWORD,
       password_confirmation: DEFAULT_PASSWORD
     )
+  end
+
+  desc "Adiciona administradores extra"
+  task add_extra_admins: :environment do
+    10.times do |i|
+      Admin.create!(
+        email: Faker::Internet.email,
+        password: DEFAULT_PASSWORD,
+        password_confirmation: DEFAULT_PASSWORD
+      )
+    end
   end
 
   desc "Adiciona o usuário padrão"
