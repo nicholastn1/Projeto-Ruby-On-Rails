@@ -178,7 +178,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                       <%= link_to destroy_user_session_path, method: :delete do%>
-                      <i class="fa fa-sign-out pull-right"></i>Sair
+                      <i class="fa fa-sign-out pull-right dropdown-item"> Sair </i>
                       <% end %>
                     </div>
                   </li>
@@ -279,18 +279,6 @@
 
     <%= javascript_include_tag 'application'%>
     <%= javascript_include_tag 'users_backoffice'%>
-    <!-- jQuery -->
-    <script src="../vendors/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap -->
-   <script src="../vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- FastClick -->
-    <script src="../vendors/fastclick/lib/fastclick.js"></script>
-    <!-- NProgress -->
-    <script src="../vendors/nprogress/nprogress.js"></script>
-    <!-- jQuery custom content scroller -->
-    <script src="../vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
-
-    <!-- Custom Theme Scripts -->
-    <script src="../build/js/custom.min.js"></script>
+    
   </body>
 </html>

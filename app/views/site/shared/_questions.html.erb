@@ -1,0 +1,37 @@
+<div class="jumbotron">
+
+  <% unless params[:term] %>
+    <h3>Últimas perguntas cadastradas: </h3>
+  <% else %>
+    <h3>Resultados para o termo "<%= params[:term] %>": </h3>
+  <% end %>
+</div>
+<% @questions.each do |question|%>
+  <%= form_with url: site_answer_path,  local: true do |form| %>
+    <div class="card">
+      <h5 class="card-header"><%= question.description %></h5>
+      <div class="card-body">
+        <p class="card-text">
+          <% question.answers.each do |answer| %>
+            <li style="list-style:none">
+              <div class="radio">
+                <label>
+                  <%= radio_button_tag 'answer_id', answer.id %>
+                  <%= answer.description %>
+                </label>
+              </div>
+            </li>
+          <% end %>
+          <li style="list-style:none">
+            <%= form.submit "Responder", class:"btn btn-light" %>
+          </li>
+        </p>
+      </div>
+    </div>
+    <br>
+  <% end %>
+<% end %>
+
+<div class="d-flex justify-content-center">
+    <%= paginate @questions %>
+</div>
