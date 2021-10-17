@@ -6,7 +6,7 @@
   <%= form_with url: site_answer_path do |form| %>
     <div class="card">
       <h5 class="card-header">
-        <%= link_to question.subject.description , site_search_subject_path(question.subject_id, question.subject.description), class:"btn btn-info", style:"margin-right: 10px;" %>
+        <%= link_to "#{question.subject.description} (#{question.subject.questions_count})" , site_search_subject_path(question.subject_id, question.subject.description), class:"btn btn-info", style:"margin-right: 10px;" %>
         <%= question.description %>
       </h5>
       <div class="card-body">

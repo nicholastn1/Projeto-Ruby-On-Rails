@@ -53,7 +53,7 @@ namespace :dev do
   task add_subjects: :environment do
     file_name = 'subjects.txt'
     file_path = File.join(DEFAULT_FILES_PATH, file_name)
-    
+
     File.open(file_path, 'r').each do |line|
       Subject.create!(description: line.strip)
     end
@@ -74,6 +74,14 @@ namespace :dev do
     end
   end
 
+  desc "Resetar contador de assuntos"
+  task reset_subject_counter: :environment do
+    show_spinner("Resetando contador de assuntos...") do
+      Subject.find_each do |subject|
+        Subject.reset_counters(subject.id, :questions)
+      end
+    end
+  end
 
   private
 
